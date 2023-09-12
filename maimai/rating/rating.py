@@ -32,6 +32,7 @@ def get_song_level(song_name: str, difficulty: str) -> float:
 
 class Rating:
     def __init__(self):
+        self.version = 'universe+'
         self.recent_best = self.__get_recent_best_dict()
         self.history_best = self.__get_history_best_dict()
 

@@ -23,16 +23,16 @@ def get_version_song_list(version: str) -> list:
 
 
 def get_song_level(song_id: str, difficulty: str) -> float:
-    level = cur.execute(f"SELECT internalLevel FROM SheetInternalLevels "
-                        f"WHERE songId='{song_id}' AND difficulty='{difficulty}'").fetchone()
-    if level:
+    if level := cur.execute(f"SELECT internalLevel FROM SheetInternalLevels "
+                            f"WHERE songId='{song_id}' AND difficulty='{difficulty}'").fetchone():
         return level
-    level = cur.execute(f"SELECT level FROM Sheets "
-                        f"WHERE songId='{song_id}' AND difficulty='{difficulty}'").fetchone()
-    if level:
+    if level := cur.execute(f"SELECT level FROM Sheets "
+                            f"WHERE songId='{song_id}' AND difficulty='{difficulty}'").fetchone():
         if '+' in level:
             return float(level[:-1] + '.7')
-    return level
+        else:
+            return level
+    return -1
 
 
 sql_connection.close()
