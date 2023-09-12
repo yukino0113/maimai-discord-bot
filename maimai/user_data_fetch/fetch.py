@@ -30,4 +30,5 @@ if sega_id_button := driver.find_element(By.XPATH, "//section[@id='segaid']//spa
     driver.find_element(By.ID, 'btnSubmit').click()
 
 driver.get('https://maimaidx-eng.com/maimai-mobile/friend/friendDetail/?idx=8024177546069')
+
 time.sleep(1000)
