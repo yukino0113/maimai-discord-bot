@@ -1,8 +1,11 @@
-import time
+import os
+
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from auth import Auth
 import warnings
+from dotenv import load_dotenv
+
+load_dotenv()
 warnings.filterwarnings('ignore')
 
 """
@@ -22,8 +25,8 @@ def open_browser():
     if sega_id_button := driver.find_element(By.XPATH,
                                              "//section[@id='segaid']//span[@class='c-button--openid--segaId']"):
         sega_id_button.click()
-        driver.find_element(By.NAME, 'sid').send_keys(Auth.account)
-        driver.find_element(By.NAME, 'password').send_keys(Auth.password)
+        driver.find_element(By.NAME, 'sid').send_keys(os.getenv("ACCOUNT"))
+        driver.find_element(By.NAME, 'password').send_keys(os.getenv("PW"))
         driver.find_element(By.ID, 'btnSubmit').click()
 
     return driver
