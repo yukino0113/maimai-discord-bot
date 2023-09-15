@@ -7,17 +7,19 @@ class User:
     def __init__(self, discord_id, friend_id):
         self.discord_id = discord_id
         self.friend_id = friend_id
-        self.info_path = f'maimai/user/{self.discord_id}.json'
-        self.song_path = f'maimai/user/{self.discord_id}.csv'
-
+        self.info_path = f'../user/{self.discord_id}.json'
+        self.song_path = f'../user/{self.discord_id}.csv'
         if os.path.exists(self.info_path):
             self.__load_user_file()
-            self.__load_song_score()
+            # self.__load_song_score()
         else:
-            with open(self.info_path):
-                self.__save_user_data()
-            with open(self.song_path, 'w'):
-                pass
+            self.__save_user_data()
+            # todo: save song score function
+
+    def set_attributes(self, dictionary):
+        for key, value in dictionary.items():
+            self.__dict__[key] = value
+        self.__save_user_data()
 
     def set_attribute(self, key, value):
         self.__dict__[key] = value
@@ -34,8 +36,7 @@ class User:
     def __load_user_file(self):
         with open(self.info_path, 'r') as j:
             d = json.load(j)
-            # todo: load song score from csv
-        print(d)
 
     def __load_song_score(self):
         self.song_score = pd.read_csv(self.song_path)
+
