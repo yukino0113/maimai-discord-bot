@@ -51,7 +51,7 @@ class MaimaiNet(Parser, DriverBase):
                 return f'邀請已發送，請至 maimai net 確認邀請'
 
     def add_favorites(self):
-        pass
+        self.click()
 
     def remove_favorite(self):
         pass
