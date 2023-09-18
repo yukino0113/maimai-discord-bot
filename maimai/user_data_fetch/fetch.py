@@ -54,7 +54,7 @@ class MaimaiNet(Parser, DriverBase):
         self.click()
 
     def remove_favorite(self):
-        pass
+        self.click()
 
     def fetch_song_score(self):
         self.add_favorites()
